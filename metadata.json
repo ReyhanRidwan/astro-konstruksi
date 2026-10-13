@@ -1,0 +1,6 @@
+{
+  "name": "Mahakarya Konstruksi Nusantara",
+  "description": "Website Resmi PT Mahakarya Bangun Nusantara - Kontraktor Umum & Spesialis Konstruksi Indonesia",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

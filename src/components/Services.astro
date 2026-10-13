@@ -1,0 +1,134 @@
+---
+// Services Bento Grid with human editorial numbering
+const services = [
+  {
+    number: "01",
+    title: "Konstruksi Gedung Bertingkat & Komersial",
+    subtitle: "High-Rise Office, Mixed-Use & Hospitality",
+    desc: "Eksekusi struktur beton bertulang (bored pile, raft foundation, shear wall), facade curtain wall, serta instalasi sistem mekanikal, elektrikal, dan plumbing (MEP) bersertifikasi green building.",
+    features: [
+      "Perkantoran Grade-A & Mixed-Use Development",
+      "Struktur Tahan Gempa SNI 1726:2019",
+      "Sistem Proteksi Kebakaran NFPA & Damkar RI",
+      "Interior Fit-Out & Finishing Arsitektural"
+    ],
+    highlight: "Gedung Komersial"
+  },
+  {
+    number: "02",
+    title: "Fasilitas Manufaktur & Pergudangan Logistik",
+    subtitle: "Heavy Industrial & Pre-Engineered Buildings",
+    desc: "Pembangunan pabrik berstandar GMP/HACCP, hanggar, dan gudang logistik modern dengan rangka baja bentang lebar (portal frame), lantai heavy duty floor hardener, dan dock leveller.",
+    features: [
+      "Struktur Baja Bentang Lebar Bebas Kolom",
+      "Lantai Presisi Superflat FF/FL Specification",
+      "Thermal Insulation & Natural Air Ventilation",
+      "Instalasi Crane Hoist & Overhead Bridge"
+    ],
+    highlight: "Fasilitas Industri"
+  },
+  {
+    number: "03",
+    title: "Pekerjaan Sipil & Infrastruktur Kawasan",
+    subtitle: "Civil Works, Roads & macro drainage",
+    desc: "Pengembangan lahan makro (cut & fill, soil improvement), jalan beton perkerasan kaku (rigid pavement), jembatan box girder, dan sistem drainase saluran pengendali banjir kawasan industri.",
+    features: [
+      "Pematangan Lahan & Geoteknik Tanah Lunak",
+      "Jalan Rigid Pavement Mutu Tinggi (K-350 / FS-45)",
+      "Jembatan Pracetak & Box Culvert Drainase",
+      "Water Treatment Plant (WTP) & Retaining Wall"
+    ],
+    highlight: "Infrastruktur Sipil"
+  },
+  {
+    number: "04",
+    title: "Design & Build / Manajemen Konstruksi Turnkey",
+    subtitle: "Integrated Engineering, Procurement & Construction",
+    desc: "Layanan menyeluruh satu pintu (EPC) dari studi kelayakan, perancangan arsitektur, perhitungan DED & RAB, pengurusan perizinan PBG/SLF, hingga komisioning dan serah terima kunci.",
+    features: [
+      "Efisiensi Biaya (Value Engineering Terukur)",
+      "Pemodelan Digital BIM (Building Information Modeling)",
+      "Pendampingan Perizinan PBG, Amdal & SLF",
+      "Single Point of Responsibility & Garansi Total"
+    ],
+    highlight: "Design & Build"
+  }
+];
+---
+
+<section id="layanan" class="py-20 bg-[#090f20] border-t border-slate-850">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
+          Kapabilitas Konstruksi
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          Layanan Konstruksi Terpadu dengan Presisi Rekayasa Tinggi
+        </h2>
+      </div>
+      <p class="text-sm text-slate-400 max-w-md leading-relaxed">
+        Setiap proyek dikerjakan dengan standar mutu SNI, sistem manajemen keselamatan kerja terakreditasi, dan pengawasan teknis oleh insinyur bersertifikasi SKA Madya/Utama.
+      </p>
+    </div>
+
+    <!-- Asymmetric Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {services.map((service, index) => (
+        <div class="group relative bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-amber-500/50 hover:bg-slate-900 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <!-- Header Row with Editorial Number -->
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-2xl font-bold font-mono text-amber-400">
+                {service.number}.
+              </span>
+              <span class="text-xs uppercase tracking-wider font-semibold text-slate-400 bg-slate-800/80 px-3 py-1 rounded">
+                {service.highlight}
+              </span>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors mb-2">
+              {service.title}
+            </h3>
+            <p class="text-xs font-medium text-amber-400/90 tracking-wide uppercase mb-4">
+              {service.subtitle}
+            </p>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6">
+              {service.desc}
+            </p>
+
+            <!-- Feature Bullet List -->
+            <div class="space-y-2.5 pt-4 border-t border-slate-800/80">
+              {service.features.map(feat => (
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
+                  <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Bottom Action link -->
+          <div class="mt-8 pt-4 flex items-center justify-between border-t border-slate-800/60">
+            <a
+              href="#kalkulator-rab"
+              class="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1.5"
+            >
+              <span>Kalkulasi Biaya {service.highlight}</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+            <span class="text-xs text-slate-500 font-mono">BIM & QA/QC Verified</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

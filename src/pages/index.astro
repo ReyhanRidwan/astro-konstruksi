@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Projects from '../components/Projects.astro';
+import TrustCertifications from '../components/TrustCertifications.astro';
+import RabCalculator from '../components/RabCalculator.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="PT Mahakarya Bangun Nusantara — Kontraktor Umum & Spesialis Konstruksi Indonesia"
+  description="Website resmi PT Mahakarya Bangun Nusantara. Kontraktor konstruksi umum kualifikasi B2 berstandar ISO 9001 & SMK3 untuk pembangunan gedung bertingkat, gudang industri, dan infrastruktur sipil di Indonesia."
+>
+  <Navbar />
+  <main>
+    <Hero />
+    <Services />
+    <Projects />
+    <TrustCertifications />
+    <RabCalculator />
+    <ContactForm />
+  </main>
+  <Footer />
+</BaseLayout>

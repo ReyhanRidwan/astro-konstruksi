@@ -1,0 +1,362 @@
+---
+// Interactive Indonesian Construction Cost Estimator (Kalkulator RAB Proyek)
+---
+
+<section id="kalkulator-rab" class="py-20 bg-[#090f20] border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="max-w-3xl mb-12">
+      <div class="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
+        Simulasi Anggaran Transparan
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Kalkulator Estimasi Awal Biaya Konstruksi (RAB)
+      </h2>
+      <p class="text-sm text-slate-300 leading-relaxed">
+        Gunakan simulator rekayasa biaya kami untuk menghitung perkiraan anggaran pelaksanaan konstruksi berdasarkan parameter luas, kategori struktur, dan standar material SNI.
+      </p>
+    </div>
+
+    <!-- Calculator Grid (2 Columns: Controls & Result Output) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Input Form (7 cols) -->
+      <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+        
+        <!-- Parameter 1: Tipe Bangunan -->
+        <div>
+          <label for="calc-type" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            1. Klasifikasi Tipe Proyek
+          </label>
+          <select
+            id="calc-type"
+            class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors"
+          >
+            <option value="kantor" data-rate-min="6000000" data-rate-max="8500000" data-duration="14">
+              Gedung Perkantoran & Komersial Bertingkat (Rp 6 - 8.5 Jt/m²)
+            </option>
+            <option value="gudang" data-rate-min="3800000" data-rate-max="5200000" data-duration="9">
+              Gudang Logistik & Pabrik Rangka Baja (Rp 3.8 - 5.2 Jt/m²)
+            </option>
+            <option value="ruko" data-rate-min="4500000" data-rate-max="6200000" data-duration="8">
+              Ruko Komersial & Retail Arcade 2-4 Lantai (Rp 4.5 - 6.2 Jt/m²)
+            </option>
+            <option value="sipil" data-rate-min="2800000" data-rate-max="4200000" data-duration="12">
+              Pekerjaan Sipil, Jalan Beton & Drainase (Rp 2.8 - 4.2 Jt/m²)
+            </option>
+          </select>
+        </div>
+
+        <!-- Parameter 2: Luas Bangunan (m²) -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label for="calc-area-input" class="text-xs font-bold uppercase tracking-wider text-slate-300">
+              2. Estimasi Luas Bangunan / Lahan
+            </label>
+            <span class="text-xs font-mono font-bold text-amber-400">
+              <span id="calc-area-display">1.500</span> m²
+            </span>
+          </div>
+          <div class="flex items-center gap-4">
+            <input
+              type="range"
+              id="calc-area-slider"
+              min="100"
+              max="15000"
+              step="50"
+              value="1500"
+              class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-amber-400"
+            />
+            <div class="relative shrink-0 w-32">
+              <input
+                type="number"
+                id="calc-area-input"
+                min="50"
+                max="50000"
+                value="1500"
+                class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-right font-mono font-bold text-white focus:outline-none focus:border-amber-400"
+              />
+              <span class="absolute left-2.5 top-2.5 text-xs text-slate-500 font-mono">m²</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parameter 3: Tingkat Spesifikasi Material -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            3. Tingkat Spesifikasi & Mutu Material
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <label class="flex items-start gap-2.5 p-3 rounded-lg border border-amber-400/60 bg-amber-400/5 cursor-pointer spec-option">
+              <input type="radio" name="calc-spec" value="1.0" checked class="mt-0.5 accent-amber-400" />
+              <div>
+                <span class="block text-xs font-bold text-white">Standar SNI</span>
+                <span class="block text-[11px] text-slate-400">Spesifikasi reguler sesuai standar nasional</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-800 bg-slate-950 cursor-pointer spec-option">
+              <input type="radio" name="calc-spec" value="1.2" class="mt-0.5 accent-amber-400" />
+              <div>
+                <span class="block text-xs font-bold text-white">Premium Korporat</span>
+                <span class="block text-[11px] text-slate-400">Arsitektur high-end & durabilitas ekstra</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-800 bg-slate-950 cursor-pointer spec-option">
+              <input type="radio" name="calc-spec" value="1.4" class="mt-0.5 accent-amber-400" />
+              <div>
+                <span class="block text-xs font-bold text-white">Heavy Industrial</span>
+                <span class="block text-[11px] text-slate-400">Tahan korosi & beban struktural berat</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Parameter 4: Pekerjaan Tambahan Khusus -->
+        <div class="pt-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            4. Item Pekerjaan Pelengkap Khusus
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer text-xs text-slate-300 hover:border-slate-700">
+              <input type="checkbox" id="add-fire" value="350000" class="rounded accent-amber-400" />
+              <span>Sistem Proteksi Kebakaran Terpadu (Sprinkler ESFR & Alarm Hydrant) (+Rp 350.000/m²)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer text-xs text-slate-300 hover:border-slate-700">
+              <input type="checkbox" id="add-mep" value="550000" class="rounded accent-amber-400" />
+              <span>Instalasi Kelistrikan Substation & Genset Sinkron (+Rp 550.000/m²)</span>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800 cursor-pointer text-xs text-slate-300 hover:border-slate-700">
+              <input type="checkbox" id="add-soil" value="400000" class="rounded accent-amber-400" />
+              <span>Pondasi Dalam Tiang Pancang / Bored Pile Kompleks (+Rp 400.000/m²)</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Results & Action Card (5 cols) -->
+      <div class="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        
+        <div class="text-xs uppercase tracking-widest font-semibold text-amber-400 mb-2">
+          Hasil Estimasi Anggaran (RAB)
+        </div>
+        <h3 class="text-xl font-bold text-white mb-6">
+          Ringkasan Rencana Biaya Proyek
+        </h3>
+
+        <!-- Big Total Output -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-5 mb-6">
+          <span class="text-xs text-slate-400 block mb-1">Perkiraan Rentang Nilai Kontrak:</span>
+          <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono tabular-nums leading-tight" id="result-total-range">
+            Rp 9.00 M – Rp 12.75 M
+          </div>
+          <span class="text-[11px] text-slate-500 mt-2 block">
+            *Estimasi indikatif sudah termasuk material, upah kerja, peralatan & overhead konstruksi.
+          </span>
+        </div>
+
+        <!-- Metric Details -->
+        <div class="space-y-3.5 border-t border-b border-slate-800/80 py-4 mb-6 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Harga Satuan Rata-Rata:</span>
+            <span class="font-mono font-bold text-white tabular-nums" id="result-unit-rate">
+              Rp 6.000.000 – Rp 8.500.000 / m²
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Perkiraan Waktu Pelaksanaan:</span>
+            <span class="font-mono font-bold text-amber-300 tabular-nums" id="result-duration">
+              12 - 14 Bulan Kalender
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Metode Pengawasan:</span>
+            <span class="font-medium text-slate-200">ISO 9001 QA/QC & Kurva S</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Masa Pemeliharaan / Retensi:</span>
+            <span class="font-medium text-slate-200">180 Hari Kalender + Garansi Struktur</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-3">
+          <button
+            type="button"
+            id="apply-to-form-btn"
+            class="w-full py-3.5 px-4 text-xs font-bold uppercase tracking-wider text-slate-950 bg-amber-400 hover:bg-amber-300 active:scale-[0.98] rounded-md transition-all shadow-md text-center"
+          >
+            Ajukan Tender dengan Estimasi Ini
+          </button>
+          
+          <a
+            id="wa-consult-btn"
+            href="https://wa.me/6281180001234?text=Halo%20PT%20Mahakarya%20Bangun%20Nusantara,%20saya%20ingin%20konsultasi%20estimasi%20proyek%20konstruksi."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 px-4 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-md transition-colors flex items-center justify-center gap-2"
+          >
+            <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.7c.974.553 1.838.816 2.791.816 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.802 0-3.491-.482-4.949-1.325l-5.051 1.325 1.353-4.945c-.917-1.503-1.442-3.265-1.442-5.055 0-5.514 4.486-10 10-10 5.514 0 10 4.486 10 10z"/>
+            </svg>
+            <span>Konsultasi Langsung via WhatsApp Tender</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Pure Client script executing real calculations without external framework bloat
+  const typeSelect = document.getElementById('calc-type') as HTMLSelectElement;
+  const areaSlider = document.getElementById('calc-area-slider') as HTMLInputElement;
+  const areaInput = document.getElementById('calc-area-input') as HTMLInputElement;
+  const areaDisplay = document.getElementById('calc-area-display') as HTMLElement;
+  const specRadios = document.querySelectorAll('input[name="calc-spec"]') as NodeListOf<HTMLInputElement>;
+  const addFire = document.getElementById('add-fire') as HTMLInputElement;
+  const addMep = document.getElementById('add-mep') as HTMLInputElement;
+  const addSoil = document.getElementById('add-soil') as HTMLInputElement;
+
+  const resultTotalRange = document.getElementById('result-total-range') as HTMLElement;
+  const resultUnitRate = document.getElementById('result-unit-rate') as HTMLElement;
+  const resultDuration = document.getElementById('result-duration') as HTMLElement;
+  const applyBtn = document.getElementById('apply-to-form-btn') as HTMLButtonElement;
+  const waBtn = document.getElementById('wa-consult-btn') as HTMLAnchorElement;
+
+  function formatIDR(num: number): string {
+    if (num >= 1_000_000_000_000) {
+      return `Rp ${(num / 1_000_000_000_000).toFixed(2)} Triliun`;
+    }
+    if (num >= 1_000_000_000) {
+      return `Rp ${(num / 1_000_000_000).toFixed(2)} M`;
+    }
+    if (num >= 1_000_000) {
+      return `Rp ${(num / 1_000_000).toFixed(1)} Jt`;
+    }
+    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function formatNumber(num: number): string {
+    return new Intl.NumberFormat('id-ID').format(num);
+  }
+
+  function calculateRAB() {
+    const selectedOption = typeSelect.options[typeSelect.selectedIndex];
+    const baseRateMin = parseFloat(selectedOption.getAttribute('data-rate-min') || '5000000');
+    const baseRateMax = parseFloat(selectedOption.getAttribute('data-rate-max') || '7500000');
+    const baseDuration = parseInt(selectedOption.getAttribute('data-duration') || '12', 10);
+
+    const area = parseFloat(areaInput.value) || 1000;
+    
+    let specMultiplier = 1.0;
+    specRadios.forEach(radio => {
+      if (radio.checked) {
+        specMultiplier = parseFloat(radio.value);
+      }
+    });
+
+    let extraPerM2 = 0;
+    if (addFire && addFire.checked) extraPerM2 += parseFloat(addFire.value);
+    if (addMep && addMep.checked) extraPerM2 += parseFloat(addMep.value);
+    if (addSoil && addSoil.checked) extraPerM2 += parseFloat(addSoil.value);
+
+    const finalRateMin = (baseRateMin * specMultiplier) + extraPerM2;
+    const finalRateMax = (baseRateMax * specMultiplier) + extraPerM2;
+
+    const totalMin = finalRateMin * area;
+    const totalMax = finalRateMax * area;
+
+    // Estimated months based on area scale
+    let estimatedMonths = baseDuration;
+    if (area > 3000) estimatedMonths += 3;
+    if (area > 8000) estimatedMonths += 4;
+
+    // Update DOM
+    if (areaDisplay) areaDisplay.textContent = formatNumber(area);
+    if (resultTotalRange) {
+      resultTotalRange.textContent = `${formatIDR(totalMin)} – ${formatIDR(totalMax)}`;
+    }
+    if (resultUnitRate) {
+      resultUnitRate.textContent = `${formatIDR(finalRateMin)} – ${formatIDR(finalRateMax)} / m²`;
+    }
+    if (resultDuration) {
+      resultDuration.textContent = `${estimatedMonths} - ${estimatedMonths + 2} Bulan Kalender`;
+    }
+
+    // Update WhatsApp Consultation Link
+    if (waBtn) {
+      const typeText = selectedOption.text.split('(')[0].trim();
+      const text = encodeURIComponent(
+        `Halo PT Mahakarya Bangun Nusantara, saya ingin konsultasi rencana proyek:\n- Tipe: ${typeText}\n- Luas: ${formatNumber(area)} m²\n- Estimasi Awal: ${formatIDR(totalMin)} - ${formatIDR(totalMax)}\nMohon info prosedur penawaran tender dan jadwal survei lokasi.`
+      );
+      waBtn.href = `https://wa.me/6281180001234?text=${text}`;
+    }
+  }
+
+  // Event Listeners
+  if (typeSelect) typeSelect.addEventListener('change', calculateRAB);
+  
+  if (areaSlider && areaInput) {
+    areaSlider.addEventListener('input', () => {
+      areaInput.value = areaSlider.value;
+      calculateRAB();
+    });
+    areaInput.addEventListener('input', () => {
+      areaSlider.value = areaInput.value;
+      calculateRAB();
+    });
+  }
+
+  specRadios.forEach(r => r.addEventListener('change', () => {
+    // update radio card border
+    document.querySelectorAll('.spec-option').forEach(el => {
+      el.classList.remove('border-amber-400/60', 'bg-amber-400/5');
+      el.classList.add('border-slate-800', 'bg-slate-950');
+    });
+    const parent = r.closest('.spec-option');
+    if (parent) {
+      parent.classList.add('border-amber-400/60', 'bg-amber-400/5');
+      parent.classList.remove('border-slate-800', 'bg-slate-950');
+    }
+    calculateRAB();
+  }));
+
+  if (addFire) addFire.addEventListener('change', calculateRAB);
+  if (addMep) addMep.addEventListener('change', calculateRAB);
+  if (addSoil) addSoil.addEventListener('change', calculateRAB);
+
+  // Transfer estimate to contact form
+  if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+      const contactForm = document.getElementById('kontak');
+      const noteField = document.getElementById('form-pesan') as HTMLTextAreaElement;
+      const typeField = document.getElementById('form-tipe') as HTMLSelectElement;
+      const areaField = document.getElementById('form-luas') as HTMLInputElement;
+
+      const selectedOption = typeSelect.options[typeSelect.selectedIndex];
+      const typeText = selectedOption.text.split('(')[0].trim();
+      const areaVal = areaInput.value;
+
+      if (typeField) {
+        typeField.value = typeSelect.value;
+      }
+      if (areaField) {
+        areaField.value = `${areaVal} m²`;
+      }
+      if (noteField && resultTotalRange) {
+        noteField.value = `Permintaan penawaran untuk ${typeText} luas ${formatNumber(parseFloat(areaVal))} m². Estimasi kalkulator awal: ${resultTotalRange.textContent}.`;
+      }
+
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Initial Run
+  calculateRAB();
+</script>

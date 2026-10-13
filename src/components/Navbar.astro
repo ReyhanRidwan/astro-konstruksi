@@ -1,0 +1,102 @@
+---
+// Top Bar Contract: 3 Zones separated by gap-8
+// Zone 1: Single text element wordmark
+// Zone 2: 4-5 concise single-line text links
+// Zone 3: 1 primary action button
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-[#0b1329]/90 border-b border-slate-800/80 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between gap-8 h-20">
+      
+      <!-- Zone 1: Brand Wordmark (Single text element) -->
+      <a href="#beranda" class="flex items-center gap-2 group whitespace-nowrap shrink-0">
+        <span class="w-8 h-8 rounded bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center font-bold text-slate-950 text-sm shadow-sm">
+          M
+        </span>
+        <span class="text-lg font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
+          PT Mahakarya Bangun Nusantara
+        </span>
+      </a>
+
+      <!-- Zone 2: 4–5 single-line navigation links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#layanan" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          Layanan
+        </a>
+        <a href="#portofolio" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          Portofolio
+        </a>
+        <a href="#standar-mutu" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          Standar Mutu & K3
+        </a>
+        <a href="#kalkulator-rab" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          Kalkulator RAB
+        </a>
+        <a href="#kontak" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          Kontak
+        </a>
+      </nav>
+
+      <!-- Zone 3: 1 Primary CTA Button + Mobile Menu Trigger -->
+      <div class="flex items-center gap-4 shrink-0">
+        <a
+          href="#kontak"
+          class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-950 bg-amber-400 hover:bg-amber-300 active:scale-[0.98] rounded-md transition-all shadow-sm shadow-amber-500/20 whitespace-nowrap shrink-0"
+        >
+          Konsultasi Proyek
+        </a>
+
+        <!-- Mobile menu toggle button -->
+        <button
+          type="button"
+          id="mobile-nav-toggle"
+          class="md:hidden p-2 text-slate-400 hover:text-white rounded-md hover:bg-slate-800 transition-colors"
+          aria-label="Buka menu navigasi"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Panel -->
+  <div id="mobile-nav-menu" class="hidden md:hidden border-b border-slate-800 bg-[#0b1329]/95 px-4 pt-2 pb-6 space-y-3">
+    <a href="#layanan" class="mobile-nav-link block px-3 py-2 text-base font-medium text-slate-200 hover:text-amber-400 rounded-md">
+      Layanan Konstruksi
+    </a>
+    <a href="#portofolio" class="mobile-nav-link block px-3 py-2 text-base font-medium text-slate-200 hover:text-amber-400 rounded-md">
+      Portofolio & Rekam Jejak
+    </a>
+    <a href="#standar-mutu" class="mobile-nav-link block px-3 py-2 text-base font-medium text-slate-200 hover:text-amber-400 rounded-md">
+      Standar Mutu & K3
+    </a>
+    <a href="#kalkulator-rab" class="mobile-nav-link block px-3 py-2 text-base font-medium text-slate-200 hover:text-amber-400 rounded-md">
+      Kalkulator RAB Proyek
+    </a>
+    <a href="#kontak" class="mobile-nav-link block px-3 py-2 text-base font-medium text-slate-200 hover:text-amber-400 rounded-md">
+      Hubungi & Tender
+    </a>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const menu = document.getElementById('mobile-nav-menu');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  if (toggleBtn && menu) {
+    toggleBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+      });
+    });
+  }
+</script>

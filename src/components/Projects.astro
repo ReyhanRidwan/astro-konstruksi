@@ -1,0 +1,231 @@
+---
+// Projects & Case Studies Showcase with high-fidelity generated imagery
+const projects = [
+  {
+    id: "proj-1",
+    category: "komersial",
+    categoryLabel: "Gedung Komersial",
+    title: "Menara Kantor Nusantara Nexus",
+    location: "Kuningan, Jakarta Selatan",
+    image: "/images/komersial.jpg",
+    value: "Rp 385 Miliar",
+    area: "42.000 m² (25 Lantai)",
+    duration: "18 Bulan (Selesai Tepat Waktu)",
+    specs: "Struktur beton bertulang K-500, double glazing Low-E glass facade, sertifikasi Greenship Gold.",
+    year: "2024"
+  },
+  {
+    id: "proj-2",
+    category: "industri",
+    categoryLabel: "Fasilitas Industri",
+    title: "Cikarang Mega Logistics Hub",
+    location: "Kawasan Industri GIIC, Cikarang",
+    image: "/images/industri.jpg",
+    value: "Rp 210 Miliar",
+    area: "68.500 m² Bangunan Gudang",
+    duration: "11 Bulan",
+    specs: "Rangka baja portal frame bentang 36m, lantai superflat FF 50 / FL 40, sistem proteksi sprinkler ESFR.",
+    year: "2024"
+  },
+  {
+    id: "proj-3",
+    category: "sipil",
+    categoryLabel: "Infrastruktur Sipil",
+    title: "Interchange Tol Elevated Segmen Barat",
+    location: "Jawa Timur",
+    image: "/images/sipil.jpg",
+    value: "Rp 540 Miliar",
+    area: "3.4 km Jalur Layang",
+    duration: "24 Bulan",
+    specs: "Pondasi bore pile dia. 1200mm, PCI Girder bentang 40m prategang, perkerasan rigid K-400.",
+    year: "2023"
+  },
+  {
+    id: "proj-4",
+    category: "industri",
+    categoryLabel: "Fasilitas Industri",
+    title: "Pabrik Manufaktur Otomotif & Workshop",
+    location: "Karawang International Industrial City",
+    image: "/images/industri.jpg",
+    value: "Rp 175 Miliar",
+    area: "28.000 m²",
+    duration: "9 Bulan",
+    specs: "Struktur heavy steel, overhead crane 20 Ton, substation kelistrikan 2.5 MVA.",
+    year: "2023"
+  },
+  {
+    id: "proj-5",
+    category: "komersial",
+    categoryLabel: "Gedung Komersial",
+    title: "Pusat Perbelanjaan & Lifestyle Arcade",
+    location: "Surabaya Barat",
+    image: "/images/komersial.jpg",
+    value: "Rp 290 Miliar",
+    area: "35.000 m² (5 Lantai + 2 Basement)",
+    duration: "16 Bulan",
+    specs: "Metode Top-Down basement excavation, atrium skylight bentang bebas 24m.",
+    year: "2022"
+  },
+  {
+    id: "proj-6",
+    category: "sipil",
+    categoryLabel: "Infrastruktur Sipil",
+    title: "Jalan Akses & Jembatan Kawasan Pelabuhan",
+    location: "Balikpapan, Kalimantan Timur",
+    image: "/images/sipil.jpg",
+    value: "Rp 195 Miliar",
+    area: "5.8 km Akses Kontainer",
+    duration: "12 Bulan",
+    specs: "Stabilisasi tanah lunak geotextile high-strength, saluran precast box culvert ganda.",
+    year: "2022"
+  }
+];
+---
+
+<section id="portofolio" class="py-20 bg-[#0b1329] border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
+          Rekam Jejak & Portofolio
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          Proyek Terpilih yang Telah Diserahterimakan
+        </h2>
+      </div>
+      <p class="text-sm text-slate-400 max-w-md">
+        Setiap karya merefleksikan standar keselamatan ketat, integritas konstruksi jangka panjang, dan kepatuhan penuh terhadap jadwal serta anggaran kontrak.
+      </p>
+    </div>
+
+    <!-- Filter Buttons (Segmented Controls) -->
+    <div class="flex flex-wrap items-center gap-2 mb-10 p-1.5 bg-slate-900 border border-slate-800 rounded-lg max-w-fit">
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-md transition-colors bg-amber-400 text-slate-950 shadow-sm"
+        data-filter="all"
+      >
+        Semua Proyek (6)
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-md transition-colors text-slate-300 hover:text-white hover:bg-slate-800"
+        data-filter="komersial"
+      >
+        Gedung Komersial
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-md transition-colors text-slate-300 hover:text-white hover:bg-slate-800"
+        data-filter="industri"
+      >
+        Fasilitas Industri
+      </button>
+      <button
+        type="button"
+        class="filter-tab px-4 py-2 text-xs font-semibold rounded-md transition-colors text-slate-300 hover:text-white hover:bg-slate-800"
+        data-filter="sipil"
+      >
+        Infrastruktur Sipil
+      </button>
+    </div>
+
+    <!-- Project Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="projects-grid">
+      {projects.map((proj) => (
+        <article
+          class="project-card group bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
+          data-category={proj.category}
+        >
+          <div>
+            <!-- Image Frame with measured ratio and overlay -->
+            <div class="relative aspect-4/3 overflow-hidden bg-slate-950">
+              <img
+                src={proj.image}
+                alt={proj.title}
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              
+              <!-- Clean unboxed metadata badge -->
+              <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs">
+                <span class="font-medium text-amber-300 bg-slate-950/80 px-2 py-0.5 rounded backdrop-blur">
+                  {proj.categoryLabel}
+                </span>
+                <span class="text-slate-300 font-mono bg-slate-950/80 px-2 py-0.5 rounded backdrop-blur">
+                  {proj.year}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6">
+              <div class="text-xs text-slate-400 mb-1 flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>{proj.location}</span>
+              </div>
+              <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors mb-3">
+                {proj.title}
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                {proj.specs}
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Metric Strip -->
+          <div class="px-6 pb-6 pt-3 border-t border-slate-800/80 bg-slate-950/40">
+            <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+              <div>
+                <span class="text-slate-500 block text-[11px] font-sans">Nilai Proyek:</span>
+                <span class="font-bold text-amber-400 tabular-nums">{proj.value}</span>
+              </div>
+              <div>
+                <span class="text-slate-500 block text-[11px] font-sans">Dimensi Luas:</span>
+                <span class="font-semibold text-slate-200 tabular-nums">{proj.area}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Pure vanilla client script for instant zero-lag category filtering
+  const tabs = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.project-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filter = tab.getAttribute('data-filter');
+
+      // Update active tab styles
+      tabs.forEach(t => {
+        t.classList.remove('bg-amber-400', 'text-slate-950', 'shadow-sm');
+        t.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+      });
+      tab.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+      tab.classList.add('bg-amber-400', 'text-slate-950', 'shadow-sm');
+
+      // Filter cards
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
